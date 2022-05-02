@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ApiDoctoresPruebaCasa.Models.Doctor>
+
+@{
+    ViewData["Title"] = "IndexDoctores";
+}
+
+<h1>IndexDoctores</h1>
+
+<p>
+    <a asp-action="CreateDoctor" class="btn btn-success">New Doctor</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cod_Hospital)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumDoctor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cod_Hospital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumDoctor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                <img src="https://bucketpruebascasa.s3.amazonaws.com/@item.Imagen" style="width:100px;height:150px"/>
+            </td>
+            <td>
+                <a asp-controller="Doctores" asp-action="GetDoctor" asp-route-id="@item.NumDoctor" class="btn btn-info">Detalles</a>
+                <a asp-controller="Doctores" asp-action="DeleteDoctor" asp-route-id="@item.NumDoctor" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
